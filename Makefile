@@ -10,7 +10,7 @@ BIN	= $(addprefix $(BINDIR), $(_BIN))
 
 SRC	= $(wildcard src/*.c)
 
-CFLAGS = -Wall -std=c17 -pedantic -g -I$(INCLDIR) -lm -lpthread
+CFLAGS = -Wall -pedantic -g -I$(INCLDIR) -lm -lpthread
 
 $(BINDIR)/$(_BIN): $(SRC)
 	@$(CC) $(SRC) $(CFLAGS) -o $@

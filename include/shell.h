@@ -47,3 +47,8 @@ void *socpth(void *args);
 void ioCopy(int IN, int OUT);
 void rcv_message();
 void *mesg_wrapper(void *args);
+void redirect_pipe(int oldfd, int newfd);
+void execute_pipeline(char* const* args[], int index, int in_fd);
+int countPipes(int argc, char **args);
+char **strArr(char **args, int p);
+char ***build3DArr(int argc, char **args);

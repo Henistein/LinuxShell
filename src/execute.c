@@ -101,11 +101,13 @@ int execute (int numargs, char **args){
   if (pid == 0){
     indicePipe=containsPipe(numargs, args);
     if(indicePipe > 0 ){
-      args[indicePipe] = NULL;
-      pipe (fd);    //criar pipe
-      pidFilho = fork(); //fork
+      //args[indicePipe] = NULL;
+      //pipe (fd);    //criar pipe
+      //pidFilho = fork(); //fork
 
-      
+			char ***args2 = build3DArr(numargs, args);
+      execute_pipeline((char* const**)args2, 0, STDIN_FILENO);
+     /* 
       if(pidFilho ==0){
         numargs=indicePipe;
         dup2(fd[1],STDOUT_FILENO);
@@ -119,6 +121,7 @@ int execute (int numargs, char **args){
         close(fd[0]); //fechar o descritor do ficheiro do pipe que este processo não necessita.
         close(fd[1]);
       }
+      */
     }
 
     numargs = redirects(numargs, args);
