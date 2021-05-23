@@ -1,2 +1,2 @@
 # Linux shell
-will have recursive pipes noobs
+It has recursive pipes you filthy plebs
