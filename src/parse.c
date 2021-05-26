@@ -2,7 +2,6 @@
 
 int k = 0;
 char **string_split(char *s, char *op){
-
   k=0;
   char **splited;
   splited = malloc(sizeof(char*));

@@ -1,7 +1,6 @@
 #include "shell.h"
 
-int ultimo ( int *numargs, char **args )
-{
+int ultimo ( int *numargs, char **args ){
  if ( args[*numargs-1][0]=='&') {
  *numargs=*numargs-1;
  args[*numargs]=NULL ;
@@ -88,7 +87,7 @@ int redirects(int numargs, char *args[]){
 }
 
 int execute (int numargs, char **args){
-  int indicePipe, pidFilho, fd[2];
+  int indicePipe;
   int pid, status;
   int code = ultimo(&numargs, args);
   if ((pid = fork()) < 0)
@@ -101,27 +100,10 @@ int execute (int numargs, char **args){
   if (pid == 0){
     indicePipe=containsPipe(numargs, args);
     if(indicePipe > 0 ){
-      //args[indicePipe] = NULL;
-      //pipe (fd);    //criar pipe
-      //pidFilho = fork(); //fork
-
+      //Convert the args to array array of strings
 			char ***args2 = build3DArr(numargs, args);
+      //Execute the recursive pipes
       execute_pipeline((char* const**)args2, 0, STDIN_FILENO);
-     /* 
-      if(pidFilho ==0){
-        numargs=indicePipe;
-        dup2(fd[1],STDOUT_FILENO);
-        close (fd[0]);
-        close (fd[1]); //fd[0] -Input(leitura) fd[1]-output(escrita)
-      }else{
-        args = args+ indicePipe+1;
-        numargs = numargs - indicePipe - 1;
-
-        dup2(fd[0], STDIN_FILENO);  //duplicar o descritor de ficheiro de leitura do PIPE para a posição na tabele de FD do STDIN
-        close(fd[0]); //fechar o descritor do ficheiro do pipe que este processo não necessita.
-        close(fd[1]);
-      }
-      */
     }
 
     numargs = redirects(numargs, args);

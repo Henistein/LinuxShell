@@ -1,3 +1,5 @@
+#ifndef SHELL_H
+#define SHELL_H
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -14,6 +16,14 @@
 #define FG 1
 #define BG 0
 #define FILE_MODE ( S_IRUSR | S_IWUSR )
+
+/*
+#ifdef DEFINE_I
+int TT = 0;
+#else
+extern int TT;
+#endif
+*/
 
 typedef struct { char msg[100] ; int tempo;} aviso_t;
 
@@ -52,3 +62,5 @@ void execute_pipeline(char* const* args[], int index, int in_fd);
 int countPipes(int argc, char **args);
 char **strArr(char **args, int p);
 char ***build3DArr(int argc, char **args);
+void trigger_thread(char **args);
+#endif

@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <string.h>
 
+#define DEFINE_I
 #include <shell.h>
 
 int main(){
@@ -14,7 +15,6 @@ int main(){
   char *args[64];
 
   while(1){
-
     printf("%s", prompt); 
     if(fgets(buff, sizeof(buff), stdin) == NULL){
       exit(0);

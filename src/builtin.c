@@ -171,8 +171,16 @@ int builtin(char **args){
   }
 
   if(strcmp(args[0], "receive") == 0){
-    pthread_t th;
-    pthread_create(&th, NULL, mesg_wrapper, (void *)args);
+    if(strcmp(args[1], "on") == 0){
+      //TT = 1;     
+      trigger_thread(args);
+    }
+    /*
+    if(strcmp(args[1], "off") == 0){
+      //TT = 0;     
+    }
+    */
+
     return 1;
   }
 
