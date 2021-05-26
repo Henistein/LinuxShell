@@ -17,13 +17,11 @@
 #define BG 0
 #define FILE_MODE ( S_IRUSR | S_IWUSR )
 
-/*
 #ifdef DEFINE_I
 int TT = 0;
 #else
 extern int TT;
 #endif
-*/
 
 typedef struct { char msg[100] ; int tempo;} aviso_t;
 

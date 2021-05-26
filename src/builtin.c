@@ -185,8 +185,14 @@ int builtin(char **args){
 
   if(strcmp(args[0], "receive") == 0){
     if(strcmp(args[1], "on") == 0){   
+      TT = 1;
       trigger_thread(args);
     }
+    if(strcmp(args[1], "off") == 0){   
+      TT = 0;
+      trigger_thread(args);
+    }
+    
     return 1;
   }
 

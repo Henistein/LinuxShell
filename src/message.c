@@ -8,7 +8,7 @@ struct mesg_buffer {
 
 void rcv_message(){
   int id;
-  while(1)
+  while(TT)
   {
     id = 0; 
     //Extract id from tty
