@@ -10,17 +10,20 @@ void rcv_message(){
   int id = 0; 
   //Extract id from tty
   char *s = ttyname(STDIN_FILENO);
+
+  //Using the string received by the ttyname, we´re going to get the number from that string
   for(int i=0; i<s[i]; i++){      
     if(isdigit(s[i])){            
       id = id*10 + (s[i] - '0');  
     }                             
-  }                               
+  }   
+                              
   id++;
   int msgid;
   //creates the message queue and returns identifier
   msgid = msgget(id, 0666 | IPC_CREAT); 
 
-  //receives the message
+  //receives the message with our id + 1
   msgrcv(msgid, &message, sizeof(message), 1, 0);
   printf("Message received: %s\n", message.mesg_text);
 

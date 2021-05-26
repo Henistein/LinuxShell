@@ -161,11 +161,24 @@ int builtin(char **args){
     return 1;
   }
 
+  if(strcmp(args[0],"users")==0){
+    printf("Avaiable users:\n");
+    system("ls /dev/pts/ | grep -v ptmx");
+    printf("\nYou are:\n");
+    system("tty | cut -d / -f 4");
+    return 1;
+  }
+
   if(strcmp(args[0], "message") == 0){
     int msgid;
+    //This message get generates a message id by the given key in the arguments
     msgid = msgget((atoi(args[1])+1), 0666 | IPC_CREAT);
     message.mesg_type = 1;
+
+    //Copies the argument given (one word) in the buffer to the structure
     strcpy(message.mesg_text, args[2]);
+    
+    //Send the message to the queue with the id+1
     msgsnd(msgid, &message, sizeof(message), 0);
     return 1;
   }
@@ -175,12 +188,6 @@ int builtin(char **args){
       //TT = 1;     
       trigger_thread(args);
     }
-    /*
-    if(strcmp(args[1], "off") == 0){
-      //TT = 0;     
-    }
-    */
-
     return 1;
   }
 
