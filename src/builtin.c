@@ -190,9 +190,8 @@ int builtin(char **args){
     }
     if(strcmp(args[1], "off") == 0){   
       TT = 0;
-      trigger_thread(args);
     }
-    
+   
     return 1;
   }
 

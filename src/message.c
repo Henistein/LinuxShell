@@ -6,10 +6,10 @@ struct mesg_buffer {
   char mesg_text[100];        
 } message;                
 
+pthread_mutex_t lock;
 void rcv_message(){
   int id;
-  while(TT)
-  {
+  while(TT) {
     id = 0; 
     //Extract id from tty
     char *s = ttyname(STDIN_FILENO);
