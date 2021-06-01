@@ -96,18 +96,46 @@ int calc(char **args){
 
 int bits(char **args){
   char operator = args[2][0];
-  switch(operator){
-    // Bitwise
-    case '&' : printf("%d\n", atoi(args[1]) & atoi(args[3]));
-    break;
-    case '^' : printf("%d\n", atoi(args[1]) ^ atoi(args[3]));
-    break;
-    case '|' : printf("%d\n", atoi(args[1]) | atoi(args[3]));
-    break;
-    case '~' : printf("%d\n", ~atoi(args[3]));
-    break;
-    default : printf("Bad opperand\n");
-  }
+  int resultado;
+  //AND
+    if(operator == '&'){ 
+        //Atoi transforma o string em int
+        resultado = atoi(args[1]) & atoi(args[3]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    //Inclusive OR
+    if(operator == '|'){         
+        resultado = atoi(args[1]) | atoi(args[3]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    //Exclusive OR
+    if(operator == '^'){         
+        resultado = atoi(args[1]) ^ atoi(args[3]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    //Negation
+    if((args[1][0]) == '~'){         
+        resultado = ~atoi(args[2]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    //Shift right
+    if(strcmp(args[2], ">>")==0){ 
+        resultado = atoi(args[1])>>atoi(args[3]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    //Shift left
+    if(strcmp(args[2], "<<")==0){ 
+        resultado = atoi(args[1])<<atoi(args[3]);
+        printf("%d\n",resultado);
+        return 1;
+    }
+    else
+      printf("Valores inválidos!\n");
   return 1;
 }
 
@@ -116,12 +144,12 @@ int isjpg(char **args){
   int filedescriptor = open(args[1], O_RDONLY); 
   read(filedescriptor, b, 4);
   if (b[0]==0xff && b[1]==0xd8 && b[2]==0xff && b[3]==0xe0){
-    printf("%d\n", 1);
+    printf("It is a jpg\n");
     return 1;
   }
 
-  printf("%d\n", 0);
-  return 0;
+  printf("It isn´t a jpg\n");
+  return 1;
 }
 
 // structure for message queue
