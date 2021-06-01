@@ -41,6 +41,5 @@ void * mesg_wrapper(void *args){
 }
 
 void trigger_thread(char **args){
-  pthread_t th;
   pthread_create(&th, NULL, mesg_wrapper, (void *)args);
 }

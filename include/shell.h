@@ -19,8 +19,10 @@
 
 #ifdef DEFINE_I
 int TT = 0;
+pthread_t th;
 #else
 extern int TT;
+extern pthread_t th;
 #endif
 
 typedef struct { char msg[100] ; int tempo;} aviso_t;

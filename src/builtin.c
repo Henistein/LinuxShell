@@ -217,6 +217,7 @@ int builtin(char **args){
       trigger_thread(args);
     }
     if(strcmp(args[1], "off") == 0){   
+      pthread_cancel(th);
       TT = 0;
     }
    
