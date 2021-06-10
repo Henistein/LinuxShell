@@ -1,5 +1,0 @@
-Makefile
-a.txt
-bin
-include
-src
